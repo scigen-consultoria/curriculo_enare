@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calculadora de Pontuação ENARE</title>
+  <title>Calculadora e Serviços ENARE</title>
   
-  <!-- Fonte Roboto -->
+  <!-- Fonte Roboto (Google Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
@@ -14,16 +14,16 @@
   >
   
   <style>
-    /* Estilos Gerais */
-    * {
-      box-sizing: border-box;
-    }
+    /* ===========================
+       ESTILOS GERAIS
+       =========================== */
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
       font-size: 14px;
-      background-color: #e8f5e9; /* Verde claro */
+      background-color: #e8f5e9;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -44,16 +44,49 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     
-    /* Cabeçalho */
+    /* ===========================
+       TABS NAVIGATION
+       =========================== */
+    .tab {
+      overflow: hidden;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .tab button {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: background-color 0.3s;
+      font-size: 16px;
+      color: #2e7d32;
+    }
+    .tab button:hover { background-color: #ddd; }
+    .tab button.active { background-color: #66bb6a; color: #fff; }
+    
+    /* ===========================
+       TAB CONTENT
+       =========================== */
+    .tabcontent {
+      display: none;
+    }
+    .tabcontent.active {
+      display: block;
+    }
+    
+    /* ===========================
+       CABEÇALHO E LOGOS
+       =========================== */
     .header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
-    /* Logo do ENARE exibido como imagem retangular completa */
+    /* Logo ENARE exibido na íntegra (imagem retangular) */
     .logo-enare {
       display: block;
       margin: 0 auto 10px;
-      max-width: 200px; /* Ajuste conforme necessário */
+      max-width: 200px; /* ajuste conforme necessário */
       height: auto;
     }
     h1 {
@@ -68,7 +101,9 @@
       margin-bottom: 0;
     }
     
-    /* Formulário */
+    /* ===========================
+       FORMULÁRIO DA CALCULADORA
+       =========================== */
     form {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -95,11 +130,11 @@
       border-color: #66bb6a;
       outline: none;
     }
-    .full-width {
-      grid-column: 1 / -1;
-    }
+    .full-width { grid-column: 1 / -1; }
     
-    /* Tooltip */
+    /* ===========================
+       TOOLTIP
+       =========================== */
     .tooltip-container {
       display: inline-block;
       position: relative;
@@ -138,7 +173,9 @@
       font-size: 12px;
     }
     
-    /* Resultado */
+    /* ===========================
+       RESULTADO
+       =========================== */
     .result {
       margin-top: 10px;
       text-align: center;
@@ -149,11 +186,12 @@
       transition: opacity 0.3s;
     }
     
-    /* Rodapé / SciGen */
+    /* ===========================
+       RODAPÉ / SCI-GEN
+       =========================== */
     .footer {
       margin-top: 30px;
       text-align: center;
-      grid-column: 1 / -1;
     }
     .scigen-logo {
       display: block;
@@ -170,400 +208,442 @@
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <!-- Logo ENARE (referenciado via arquivo externo) -->
-    <img src="images/enare-logo.jpeg" alt="Logo ENARE" class="logo-enare">
-    <h1>Calculadora de Pontuação ENARE</h1>
-    <p class="subtitle">Selecione os itens de acordo com o edital</p>
+  <!-- Tabs Navigation -->
+  <div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'Calculadora')">Calculadora</button>
+    <button class="tablinks" onclick="openTab(event, 'Servicos')">Serviços</button>
   </div>
   
-  <form id="scoreForm">
-    <!-- 1) Histórico Escolar -->
-    <div class="form-group full-width">
-      <label for="historico">
-        Histórico Escolar
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            Se ≥ 50% menções A (50 pts), ou A e B (40 pts), ou A, B ou C (30 pts).
+  <!-- Calculadora Tab -->
+  <div id="Calculadora" class="tabcontent active">
+    <div class="header">
+      <img src="images/enare-logo.jpeg" alt="Logo ENARE" class="logo-enare">
+      <h1>Calculadora de Pontuação ENARE</h1>
+      <p class="subtitle">Selecione os itens de acordo com o edital</p>
+    </div>
+    <form id="scoreForm">
+      <!-- 1) Histórico Escolar -->
+      <div class="form-group full-width">
+        <label for="historico">
+          Histórico Escolar
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              Se ≥ 50% menções A (50 pts), ou A e B (40 pts), ou A, B ou C (30 pts).
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="historico">
-        <option value="0">Não pontua / Não se aplica</option>
-        <option value="30">≥ 50% A, B ou C (30 pts)</option>
-        <option value="40">≥ 50% A e B (40 pts)</option>
-        <option value="50">≥ 50% A (50 pts)</option>
-      </select>
-    </div>
-    
-    <!-- 2) Programas/Projetos de Extensão -->
-    <div class="form-group">
-      <label for="extensao">
-        Programas/Projetos de Extensão (0 a 2)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            Cada projeto vale 4 pts; máximo de 8 pts.
+        </label>
+        <select id="historico">
+          <option value="0">Não pontua / Não se aplica</option>
+          <option value="30">≥ 50% A, B ou C (30 pts)</option>
+          <option value="40">≥ 50% A e B (40 pts)</option>
+          <option value="50">≥ 50% A (50 pts)</option>
+        </select>
+      </div>
+      
+      <!-- 2) Programas/Projetos de Extensão -->
+      <div class="form-group">
+        <label for="extensao">
+          Programas/Projetos de Extensão (0 a 2)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              Cada projeto vale 4 pts; máximo de 8 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="extensao">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-    </div>
-    
-    <!-- 3) Eventos/Atividades no SUS -->
-    <div class="form-group">
-      <label for="eventosSUS">
-        Eventos/Atividades no SUS (0 a 4)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            Cada evento vale 0,25 pt; máximo de 1 pt.
+        </label>
+        <select id="extensao">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
+      
+      <!-- 3) Eventos/Atividades no SUS -->
+      <div class="form-group">
+        <label for="eventosSUS">
+          Eventos/Atividades no SUS (0 a 4)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              Cada evento vale 0,25 pt; máximo de 1 pt.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="eventosSUS">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-    </div>
-    
-    <!-- 4) Cursos de Aperfeiçoamento -->
-    <div class="form-group">
-      <label for="cursosAperf">
-        Cursos de Aperfeiçoamento (0 a 4)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            Cada curso (mínimo 180h) vale 0,5 pt; máximo de 2 pts.
+        </label>
+        <select id="eventosSUS">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      
+      <!-- 4) Cursos de Aperfeiçoamento -->
+      <div class="form-group">
+        <label for="cursosAperf">
+          Cursos de Aperfeiçoamento (0 a 4)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              Cada curso (mínimo 180h) vale 0,5 pt; máximo de 2 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="cursosAperf">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-    </div>
-    
-    <!-- 5) Monitoria -->
-    <div class="form-group">
-      <label for="monitoria">
-        Monitoria (semestres, 0 a 3)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            3 pts por semestre; máximo de 9 pts.
+        </label>
+        <select id="cursosAperf">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      
+      <!-- 5) Monitoria -->
+      <div class="form-group">
+        <label for="monitoria">
+          Monitoria (semestres, 0 a 3)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              3 pts por semestre; máximo de 9 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="monitoria">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
-    
-    <!-- 6) Atividade de Pesquisa -->
-    <div class="form-group">
-      <label for="pesquisa">
-        Atividade de Pesquisa (0 a 2)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            6 pts por atividade; máximo de 12 pts.
+        </label>
+        <select id="monitoria">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      
+      <!-- 6) Atividade de Pesquisa -->
+      <div class="form-group">
+        <label for="pesquisa">
+          Atividade de Pesquisa (0 a 2)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              6 pts por atividade; máximo de 12 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="pesquisa">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-    </div>
-    
-    <!-- 7) Trabalhos Científicos Apresentados -->
-    <div class="form-group">
-      <label for="trabalhos">
-        Trabalhos Científicos (0 a 3)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            0,5 pt por trabalho; máximo de 1,5 pts.
+        </label>
+        <select id="pesquisa">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
+      
+      <!-- 7) Trabalhos Científicos Apresentados -->
+      <div class="form-group">
+        <label for="trabalhos">
+          Trabalhos Científicos (0 a 3)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              0,5 pt por trabalho; máximo de 1,5 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="trabalhos">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
-    
-    <!-- 8) Artigos não indexados -->
-    <div class="form-group">
-      <label for="artigosNaoIndex">
-        Artigos não indexados (0 a 3)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            1 pt por artigo; máximo de 3 pts.
+        </label>
+        <select id="trabalhos">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      
+      <!-- 8) Artigos não indexados -->
+      <div class="form-group">
+        <label for="artigosNaoIndex">
+          Artigos não indexados (0 a 3)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              1 pt por artigo; máximo de 3 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="artigosNaoIndex">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
-    
-    <!-- 9) Artigos indexados -->
-    <div class="form-group">
-      <label for="artigosIndex">
-        Artigos indexados (0 a 3)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            1,5 pt por artigo; máximo de 4,5 pts.
+        </label>
+        <select id="artigosNaoIndex">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      
+      <!-- 9) Artigos indexados -->
+      <div class="form-group">
+        <label for="artigosIndex">
+          Artigos indexados (0 a 3)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              1,5 pt por artigo; máximo de 4,5 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="artigosIndex">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
-    
-    <!-- 10) Congressos/Simpósios -->
-    <div class="form-group">
-      <label for="congresso">
-        Congressos/Simpósios (0 a 5)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            0,1 pt por evento; máximo de 0,5 pt.
+        </label>
+        <select id="artigosIndex">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      
+      <!-- 10) Congressos/Simpósios -->
+      <div class="form-group">
+        <label for="congresso">
+          Congressos/Simpósios (0 a 5)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              0,1 pt por evento; máximo de 0,5 pt.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="congresso">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-    </div>
-    
-    <!-- 11) Representação Estudantil -->
-    <div class="form-group">
-      <label for="representacao">
-        Representação Estudantil (0 a 2)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            1 pt por ano; máximo de 2 pts.
+        </label>
+        <select id="congresso">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      
+      <!-- 11) Representação Estudantil -->
+      <div class="form-group">
+        <label for="representacao">
+          Representação Estudantil (0 a 2)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              1 pt por ano; máximo de 2 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="representacao">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-    </div>
-    
-    <!-- 12) Ligas Acadêmicas -->
-    <div class="form-group">
-      <label for="ligas">
-        Ligas Acadêmicas (0 a 2)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            0,5 pt por participação (mínimo 12 meses); máximo de 1 pt.
+        </label>
+        <select id="representacao">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
+      
+      <!-- 12) Ligas Acadêmicas -->
+      <div class="form-group">
+        <label for="ligas">
+          Ligas Acadêmicas (0 a 2)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              0,5 pt por participação (mínimo 12 meses); máximo de 1 pt.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="ligas">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-    </div>
-    
-    <!-- 13) Proficiência em Língua Estrangeira -->
-    <div class="form-group full-width">
-      <label>
-        <input type="checkbox" id="proficiencia">
-        Proficiência em Língua Estrangeira (1 pt)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            Marque se você possui proficiência comprovada em uma língua estrangeira.
+        </label>
+        <select id="ligas">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
+      
+      <!-- 13) Proficiência em Língua Estrangeira -->
+      <div class="form-group full-width">
+        <label>
+          <input type="checkbox" id="proficiencia">
+          Proficiência em Língua Estrangeira (1 pt)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              Marque se você possui proficiência comprovada.
+            </span>
           </span>
-        </span>
-      </label>
-    </div>
-    
-    <!-- 14) PET Saúde/MEC -->
-    <div class="form-group">
-      <label for="pet">
-        PET Saúde/MEC (0 a 2)
-        <span class="tooltip-container">
-          <span class="tooltip-icon">?</span>
-          <span class="tooltip-text">
-            1 pt por ano de participação; máximo de 2 pts.
+        </label>
+      </div>
+      
+      <!-- 14) PET Saúde/MEC -->
+      <div class="form-group">
+        <label for="pet">
+          PET Saúde/MEC (0 a 2)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              1 pt por ano de participação; máximo de 2 pts.
+            </span>
           </span>
-        </span>
-      </label>
-      <select id="pet">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-    </div>
-    
-    <!-- Resultado -->
-    <div class="result" id="resultado">
-      Pontuação total: 0
-    </div>
-  </form>
+        </label>
+        <select id="pet">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
+      
+      <!-- Resultado da Calculadora -->
+      <div class="result" id="resultado">
+        Pontuação total: 0
+      </div>
+    </form>
+  </div>
   
+  <!-- Serviços Tab -->
+  <div id="Servicos" class="tabcontent">
+    <div class="header">
+      <h1>Serviços Adicionais</h1>
+      <p class="subtitle">Conheça nossos serviços e pacotes</p>
+    </div>
+    <div class="content">
+      <p>Aqui você pode contratar:</p>
+      <ul>
+        <li>Consultoria para TCC</li>
+        <li>Pacotes para publicação de artigos científicos (indexados e não indexados)</li>
+        <li>Consultoria na elaboração de currículos</li>
+        <li>E outros serviços personalizados!</li>
+      </ul>
+      <p>Entre em contato para saber mais.</p>
+    </div>
+  </div>
+  
+  <!-- Rodapé / SciGen -->
   <div class="footer">
     <p class="footer-text">Desenvolvido por</p>
-    <!-- Logo SciGen -->
     <img src="images/15c37e2b-4b80-4c89-8137-c7421eee9c35 2.jpeg" alt="Logo SciGen" class="scigen-logo">
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const elements = document.querySelectorAll('select, #proficiencia');
-  elements.forEach(el => {
-    el.addEventListener('change', () => {
-      fadeOutIn(calcular);
+  // Função para alternar entre abas
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+  
+  // Cálculo da pontuação
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('select, #proficiencia');
+    elements.forEach(el => {
+      el.addEventListener('change', () => {
+        fadeOutIn(calcular);
+      });
     });
+    calcular();
   });
-  calcular();
-});
-
-function calcular() {
-  let total = 0;
-
-  // 1) Histórico Escolar
-  const historico = parseFloat(document.getElementById('historico').value) || 0;
-  total += historico;
-
-  // 2) Extensão
-  const extensaoVal = parseInt(document.getElementById('extensao').value) || 0;
-  let extensaoPts = extensaoVal * 4;
-  if(extensaoPts > 8) extensaoPts = 8;
-  total += extensaoPts;
-
-  // 3) Eventos no SUS
-  const eventosSUSVal = parseInt(document.getElementById('eventosSUS').value) || 0;
-  let eventosSUSPts = eventosSUSVal * 0.25;
-  if(eventosSUSPts > 1) eventosSUSPts = 1;
-  total += eventosSUSPts;
-
-  // 4) Cursos de Aperfeiçoamento
-  const cursosVal = parseInt(document.getElementById('cursosAperf').value) || 0;
-  let cursosPts = cursosVal * 0.5;
-  if(cursosPts > 2) cursosPts = 2;
-  total += cursosPts;
-
-  // 5) Monitoria
-  const monitoriaVal = parseInt(document.getElementById('monitoria').value) || 0;
-  let monitoriaPts = monitoriaVal * 3;
-  if(monitoriaPts > 9) monitoriaPts = 9;
-  total += monitoriaPts;
-
-  // 6) Pesquisa
-  const pesquisaVal = parseInt(document.getElementById('pesquisa').value) || 0;
-  let pesquisaPts = pesquisaVal * 6;
-  if(pesquisaPts > 12) pesquisaPts = 12;
-  total += pesquisaPts;
-
-  // 7) Trabalhos Científicos
-  const trabVal = parseInt(document.getElementById('trabalhos').value) || 0;
-  let trabPts = trabVal * 0.5;
-  if(trabPts > 1.5) trabPts = 1.5;
-  total += trabPts;
-
-  // 8) Artigos não indexados
-  const artNaoVal = parseInt(document.getElementById('artigosNaoIndex').value) || 0;
-  let artNaoPts = artNaoVal * 1;
-  if(artNaoPts > 3) artNaoPts = 3;
-  total += artNaoPts;
-
-  // 9) Artigos indexados
-  const artIndexVal = parseInt(document.getElementById('artigosIndex').value) || 0;
-  let artIndexPts = artIndexVal * 1.5;
-  if(artIndexPts > 4.5) artIndexPts = 4.5;
-  total += artIndexPts;
-
-  // 10) Congressos/Simpósios
-  const congressoVal = parseInt(document.getElementById('congresso').value) || 0;
-  let congressoPts = congressoVal * 0.1;
-  if(congressoPts > 0.5) congressoPts = 0.5;
-  total += congressoPts;
-
-  // 11) Representação Estudantil
-  const repVal = parseInt(document.getElementById('representacao').value) || 0;
-  total += (repVal > 2) ? 2 : repVal;
-
-  // 12) Ligas Acadêmicas
-  const ligasVal = parseInt(document.getElementById('ligas').value) || 0;
-  let ligasPts = ligasVal * 0.5;
-  if(ligasPts > 1) ligasPts = 1;
-  total += ligasPts;
-
-  // 13) Proficiência em Língua Estrangeira (checkbox)
-  if(document.getElementById('proficiencia').checked) {
-    total += 1;
+  
+  function calcular() {
+    let total = 0;
+    
+    // 1) Histórico Escolar
+    const historico = parseFloat(document.getElementById('historico').value) || 0;
+    total += historico;
+    
+    // 2) Extensão
+    const extensaoVal = parseInt(document.getElementById('extensao').value) || 0;
+    let extensaoPts = extensaoVal * 4;
+    if(extensaoPts > 8) extensaoPts = 8;
+    total += extensaoPts;
+    
+    // 3) Eventos no SUS
+    const eventosSUSVal = parseInt(document.getElementById('eventosSUS').value) || 0;
+    let eventosSUSPts = eventosSUSVal * 0.25;
+    if(eventosSUSPts > 1) eventosSUSPts = 1;
+    total += eventosSUSPts;
+    
+    // 4) Cursos de Aperfeiçoamento
+    const cursosVal = parseInt(document.getElementById('cursosAperf').value) || 0;
+    let cursosPts = cursosVal * 0.5;
+    if(cursosPts > 2) cursosPts = 2;
+    total += cursosPts;
+    
+    // 5) Monitoria
+    const monitoriaVal = parseInt(document.getElementById('monitoria').value) || 0;
+    let monitoriaPts = monitoriaVal * 3;
+    if(monitoriaPts > 9) monitoriaPts = 9;
+    total += monitoriaPts;
+    
+    // 6) Pesquisa
+    const pesquisaVal = parseInt(document.getElementById('pesquisa').value) || 0;
+    let pesquisaPts = pesquisaVal * 6;
+    if(pesquisaPts > 12) pesquisaPts = 12;
+    total += pesquisaPts;
+    
+    // 7) Trabalhos Científicos
+    const trabVal = parseInt(document.getElementById('trabalhos').value) || 0;
+    let trabPts = trabVal * 0.5;
+    if(trabPts > 1.5) trabPts = 1.5;
+    total += trabPts;
+    
+    // 8) Artigos não indexados
+    const artNaoVal = parseInt(document.getElementById('artigosNaoIndex').value) || 0;
+    let artNaoPts = artNaoVal * 1;
+    if(artNaoPts > 3) artNaoPts = 3;
+    total += artNaoPts;
+    
+    // 9) Artigos indexados
+    const artIndexVal = parseInt(document.getElementById('artigosIndex').value) || 0;
+    let artIndexPts = artIndexVal * 1.5;
+    if(artIndexPts > 4.5) artIndexPts = 4.5;
+    total += artIndexPts;
+    
+    // 10) Congressos/Simpósios
+    const congressoVal = parseInt(document.getElementById('congresso').value) || 0;
+    let congressoPts = congressoVal * 0.1;
+    if(congressoPts > 0.5) congressoPts = 0.5;
+    total += congressoPts;
+    
+    // 11) Representação Estudantil
+    const repVal = parseInt(document.getElementById('representacao').value) || 0;
+    total += (repVal > 2) ? 2 : repVal;
+    
+    // 12) Ligas Acadêmicas
+    const ligasVal = parseInt(document.getElementById('ligas').value) || 0;
+    let ligasPts = ligasVal * 0.5;
+    if(ligasPts > 1) ligasPts = 1;
+    total += ligasPts;
+    
+    // 13) Proficiência em Língua Estrangeira (checkbox)
+    if(document.getElementById('proficiencia').checked) {
+      total += 1;
+    }
+    
+    // 14) PET Saúde/MEC
+    const petVal = parseInt(document.getElementById('pet').value) || 0;
+    total += (petVal > 2) ? 2 : petVal;
+    
+    total = Math.round(total * 10) / 10;
+    let diff = 100 - total;
+    let msg = `Pontuação total: ${total} / 100<br>`;
+    if (diff > 0) {
+      msg += `Faltam ${diff} pts para 100.`;
+    } else if (diff < 0) {
+      msg += `Excedeu em ${Math.abs(diff)} pts.`;
+    } else {
+      msg += `Pontuação perfeita!`;
+    }
+    document.getElementById('resultado').innerHTML = msg;
   }
-
-  // 14) PET Saúde/MEC
-  const petVal = parseInt(document.getElementById('pet').value) || 0;
-  total += (petVal > 2) ? 2 : petVal;
-
-  total = Math.round(total * 10) / 10;
-  let diff = 100 - total;
-  let msg = `Pontuação total: ${total} / 100<br>`;
-  if (diff > 0) {
-    msg += `Faltam ${diff} pts para 100.`;
-  } else if (diff < 0) {
-    msg += `Excedeu em ${Math.abs(diff)} pts.`;
-  } else {
-    msg += `Pontuação perfeita!`;
+  
+  function fadeOutIn(callback) {
+    const resultDiv = document.getElementById('resultado');
+    resultDiv.style.opacity = '0';
+    setTimeout(() => {
+      callback();
+      resultDiv.style.opacity = '1';
+    }, 300);
   }
-  document.getElementById('resultado').innerHTML = msg;
-}
-
-function fadeOutIn(callback) {
-  const resultDiv = document.getElementById('resultado');
-  resultDiv.style.opacity = '0';
-  setTimeout(() => {
-    callback();
-    resultDiv.style.opacity = '1';
-  }, 300);
-}
 </script>
 </body>
 </html>
+
 
