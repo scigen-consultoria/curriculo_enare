@@ -17,7 +17,9 @@
     /* ===========================
        ESTILOS GERAIS
        =========================== */
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -129,7 +131,9 @@
       border-color: #66bb6a;
       outline: none;
     }
-    .full-width { grid-column: 1 / -1; }
+    .full-width {
+      grid-column: 1 / -1;
+    }
     
     /* ===========================
        TOOLTIP
@@ -216,12 +220,12 @@
   <!-- Aba Calculadora -->
   <div id="Calculadora" class="tabcontent active">
     <div class="header">
-      <img src="images/logo-enare.png" alt="Logo ENARE" class="logo-enare">
+      <img src="images/enare-logo.jpeg" alt="Logo ENARE" class="logo-enare">
       <h1>Calculadora de Pontuação ENARE</h1>
       <p class="subtitle">Selecione os itens de acordo com o edital</p>
     </div>
     <form id="scoreForm">
-      <!-- 1) Histórico Escolar -->
+      <!-- 1) HISTÓRICO ESCOLAR -->
       <div class="form-group full-width">
         <label for="historico">
           Histórico Escolar
@@ -237,9 +241,9 @@
         </label>
         <select id="historico">
           <option value="0">Não pontua / Não se aplica</option>
-          <option value="50">50 pts – ≥50% "A" ou "SS"</option>
-          <option value="40">40 pts – ≥50% "A e B" ou "SS e MS"</option>
-          <option value="30">30 pts – ≥50% "A, B ou C" ou "SS, MS e MM"</option>
+          <option value="50">≥50% "A" ou "SS" → 50 pts</option>
+          <option value="40">≥50% "A e B" ou "SS e MS" → 40 pts</option>
+          <option value="30">≥50% "A, B ou C" ou "SS, MS e MM" → 30 pts</option>
         </select>
       </div>
       
@@ -338,18 +342,39 @@
         </select>
       </div>
       
-      <!-- 7) Trabalhos Científicos Apresentados -->
+      <!-- 7) Trabalhos Científicos Regionais/Locais -->
       <div class="form-group">
-        <label for="trabalhos">
-          Trabalhos Científicos (0 a 3)
+        <label for="trabReg">
+          Trabalhos Científicos (Regional/Local) (0 a 5)
           <span class="tooltip-container">
             <span class="tooltip-icon">?</span>
             <span class="tooltip-text">
-              0,5 pt por trabalho; máximo de 1,5 pts.
+              0,3 pt por trabalho; máximo de 1,5 pts (ou 5 trabalhos).
             </span>
           </span>
         </label>
-        <select id="trabalhos">
+        <select id="trabReg">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      
+      <!-- 8) Trabalhos Científicos Nacionais/Internacionais -->
+      <div class="form-group">
+        <label for="trabNac">
+          Trabalhos Científicos (Nac/Inter) (0 a 3)
+          <span class="tooltip-container">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">
+              0,5 pt por trabalho; máximo de 1,5 pts (3 trabalhos).
+            </span>
+          </span>
+        </label>
+        <select id="trabNac">
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -357,7 +382,7 @@
         </select>
       </div>
       
-      <!-- 8) Artigos não indexados -->
+      <!-- 9) Artigos não indexados -->
       <div class="form-group">
         <label for="artigosNaoIndex">
           Artigos não indexados (0 a 3)
@@ -376,7 +401,7 @@
         </select>
       </div>
       
-      <!-- 9) Artigos indexados -->
+      <!-- 10) Artigos indexados -->
       <div class="form-group">
         <label for="artigosIndex">
           Artigos indexados (0 a 3)
@@ -395,7 +420,7 @@
         </select>
       </div>
       
-      <!-- 10) Congressos/Simpósios -->
+      <!-- 11) Congressos/Simpósios -->
       <div class="form-group">
         <label for="congresso">
           Congressos/Simpósios (0 a 5)
@@ -416,7 +441,7 @@
         </select>
       </div>
       
-      <!-- 11) Representação Estudantil -->
+      <!-- 12) Representação Estudantil -->
       <div class="form-group">
         <label for="representacao">
           Representação Estudantil (0 a 2)
@@ -434,7 +459,7 @@
         </select>
       </div>
       
-      <!-- 12) Ligas Acadêmicas -->
+      <!-- 13) Ligas Acadêmicas -->
       <div class="form-group">
         <label for="ligas">
           Ligas Acadêmicas (0 a 2)
@@ -452,7 +477,7 @@
         </select>
       </div>
       
-      <!-- 13) Proficiência em Língua Estrangeira -->
+      <!-- 14) Proficiência em Língua Estrangeira -->
       <div class="form-group full-width">
         <label>
           <input type="checkbox" id="proficiencia">
@@ -466,14 +491,14 @@
         </label>
       </div>
       
-      <!-- 14) PET Saúde/MEC -->
+      <!-- 15) PET Saúde/MEC (1,5/ano, máx. 3) -->
       <div class="form-group">
         <label for="pet">
-          PET Saúde/MEC (0 a 2)
+          PET Saúde/MEC (0 a 2 anos)
           <span class="tooltip-container">
             <span class="tooltip-icon">?</span>
             <span class="tooltip-text">
-              1,5 pts por ano de participação; máximo de 3 pts.
+              1,5 pt por ano; máximo de 3 pts.
             </span>
           </span>
         </label>
@@ -494,7 +519,7 @@
   <!-- Aba Serviços -->
   <div id="Servicos" class="tabcontent">
     <div class="header">
-      <h1>Serviços adicionais</h1>
+      <h1>Serviços Adicionais</h1>
       <p class="subtitle">Conheça nossos serviços e pacotes</p>
     </div>
     <div class="content">
@@ -505,19 +530,19 @@
         <li>Consultoria para elaboração de currículos</li>
         <li>E outros serviços personalizados!</li>
       </ul>
-      <p>Entre em contato para saber mais!</p>
+      <p>Entre em contato para saber mais.</p>
     </div>
   </div>
   
   <!-- Rodapé / SciGen -->
   <div class="footer">
     <p class="footer-text">Desenvolvido por</p>
-    <img src="images/logo-scigen.png" alt="Logo SciGen" class="scigen-logo">
+    <img src="images/15c37e2b-4b80-4c89-8137-c7421eee9c35 2.jpeg" alt="Logo SciGen" class="scigen-logo">
   </div>
 </div>
 
 <script>
-  // Alterna entre abas
+  /* Alterna entre as abas */
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -531,8 +556,8 @@
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
   }
-  
-  // Cálculo da pontuação
+
+  /* Calcula a pontuação */
   document.addEventListener('DOMContentLoaded', () => {
     const elements = document.querySelectorAll('select, #proficiencia');
     elements.forEach(el => {
@@ -542,87 +567,96 @@
     });
     calcular();
   });
-  
+
   function calcular() {
     let total = 0;
     
     // 1) Histórico Escolar
     const historico = parseFloat(document.getElementById('historico').value) || 0;
     total += historico;
-    
+
     // 2) Extensão
     const extensaoVal = parseInt(document.getElementById('extensao').value) || 0;
     let extensaoPts = extensaoVal * 4;
-    if(extensaoPts > 8) extensaoPts = 8;
+    if (extensaoPts > 8) extensaoPts = 8;
     total += extensaoPts;
-    
+
     // 3) Eventos no SUS
     const eventosSUSVal = parseInt(document.getElementById('eventosSUS').value) || 0;
     let eventosSUSPts = eventosSUSVal * 0.25;
-    if(eventosSUSPts > 1) eventosSUSPts = 1;
+    if (eventosSUSPts > 1) eventosSUSPts = 1;
     total += eventosSUSPts;
-    
+
     // 4) Cursos de Aperfeiçoamento
     const cursosVal = parseInt(document.getElementById('cursosAperf').value) || 0;
     let cursosPts = cursosVal * 0.5;
-    if(cursosPts > 2) cursosPts = 2;
+    if (cursosPts > 2) cursosPts = 2;
     total += cursosPts;
-    
+
     // 5) Monitoria
     const monitoriaVal = parseInt(document.getElementById('monitoria').value) || 0;
     let monitoriaPts = monitoriaVal * 3;
-    if(monitoriaPts > 9) monitoriaPts = 9;
+    if (monitoriaPts > 9) monitoriaPts = 9;
     total += monitoriaPts;
-    
+
     // 6) Pesquisa
     const pesquisaVal = parseInt(document.getElementById('pesquisa').value) || 0;
     let pesquisaPts = pesquisaVal * 6;
-    if(pesquisaPts > 12) pesquisaPts = 12;
+    if (pesquisaPts > 12) pesquisaPts = 12;
     total += pesquisaPts;
-    
-    // 7) Trabalhos Científicos
-    const trabVal = parseInt(document.getElementById('trabalhos').value) || 0;
-    let trabPts = trabVal * 0.5;
-    if(trabPts > 1.5) trabPts = 1.5;
-    total += trabPts;
-    
-    // 8) Artigos não indexados
+
+    // 7) Trabalhos Regionais/Locais
+    const trabRegVal = parseInt(document.getElementById('trabReg').value) || 0;
+    let trabRegPts = trabRegVal * 0.3;
+    if (trabRegPts > 1.5) trabRegPts = 1.5;
+    total += trabRegPts;
+
+    // 8) Trabalhos Nacionais/Internacionais
+    const trabNacVal = parseInt(document.getElementById('trabNac').value) || 0;
+    let trabNacPts = trabNacVal * 0.5;
+    if (trabNacPts > 1.5) trabNacPts = 1.5;
+    total += trabNacPts;
+
+    // 9) Artigos não indexados
     const artNaoVal = parseInt(document.getElementById('artigosNaoIndex').value) || 0;
     let artNaoPts = artNaoVal * 1;
-    if(artNaoPts > 3) artNaoPts = 3;
+    if (artNaoPts > 3) artNaoPts = 3;
     total += artNaoPts;
-    
-    // 9) Artigos indexados
+
+    // 10) Artigos indexados
     const artIndexVal = parseInt(document.getElementById('artigosIndex').value) || 0;
     let artIndexPts = artIndexVal * 1.5;
-    if(artIndexPts > 4.5) artIndexPts = 4.5;
+    if (artIndexPts > 4.5) artIndexPts = 4.5;
     total += artIndexPts;
-    
-    // 10) Congressos/Simpósios
+
+    // 11) Congressos/Simpósios
     const congressoVal = parseInt(document.getElementById('congresso').value) || 0;
     let congressoPts = congressoVal * 0.1;
-    if(congressoPts > 0.5) congressoPts = 0.5;
+    if (congressoPts > 0.5) congressoPts = 0.5;
     total += congressoPts;
-    
-    // 11) Representação Estudantil
+
+    // 12) Representação Estudantil
     const repVal = parseInt(document.getElementById('representacao').value) || 0;
     total += (repVal > 2) ? 2 : repVal;
-    
-    // 12) Ligas Acadêmicas
+
+    // 13) Ligas Acadêmicas
     const ligasVal = parseInt(document.getElementById('ligas').value) || 0;
     let ligasPts = ligasVal * 0.5;
-    if(ligasPts > 1) ligasPts = 1;
+    if (ligasPts > 1) ligasPts = 1;
     total += ligasPts;
-    
-    // 13) Proficiência em Língua Estrangeira (checkbox)
-    if(document.getElementById('proficiencia').checked) {
+
+    // 14) Proficiência em Língua Estrangeira
+    if (document.getElementById('proficiencia').checked) {
       total += 1;
     }
-    
-    // 14) PET Saúde/MEC
+
+    // 15) PET Saúde/MEC (1,5/ano, máx 3)
     const petVal = parseInt(document.getElementById('pet').value) || 0;
-    total += (petVal > 3) ? 3 : petVal;
-    
+    let petPts = petVal * 1.5;
+    if (petPts > 3) petPts = 3;
+    total += petPts;
+
+    // Arredonda
     total = Math.round(total * 10) / 10;
     let diff = 100 - total;
     let msg = `Pontuação total: ${total} / 100<br>`;
@@ -635,7 +669,8 @@
     }
     document.getElementById('resultado').innerHTML = msg;
   }
-  
+
+  // Efeito fade-out / fade-in no resultado
   function fadeOutIn(callback) {
     const resultDiv = document.getElementById('resultado');
     resultDiv.style.opacity = '0';
