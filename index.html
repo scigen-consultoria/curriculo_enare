@@ -4,19 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calculadora de Pontuação ENARE</title>
-
-  <!-- Fonte Roboto (Google Fonts) -->
+  
+  <!-- Fonte Roboto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" 
     rel="stylesheet"
   >
-
+  
   <style>
-    /* ===========================
-       ESTILOS GERAIS
-       =========================== */
+    /* Estilos Gerais */
     * {
       box-sizing: border-box;
     }
@@ -45,21 +43,18 @@
       from { opacity: 0; transform: translateY(-10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    /* ===========================
-       CABEÇALHO
-       =========================== */
+    
+    /* Cabeçalho */
     .header {
       text-align: center;
       margin-bottom: 30px;
     }
+    /* Logo do ENARE exibido como imagem retangular completa */
     .logo-enare {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin: 0 auto 10px;
       display: block;
-      object-fit: cover; /* opcional, caso a imagem não seja circular */
+      margin: 0 auto 10px;
+      max-width: 200px; /* Ajuste conforme necessário */
+      height: auto;
     }
     h1 {
       margin: 0;
@@ -72,10 +67,8 @@
       margin-top: 5px;
       margin-bottom: 0;
     }
-
-    /* ===========================
-       FORMULÁRIO
-       =========================== */
+    
+    /* Formulário */
     form {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -102,14 +95,11 @@
       border-color: #66bb6a;
       outline: none;
     }
-    /* Campo que ocupa duas colunas */
     .full-width {
       grid-column: 1 / -1;
     }
-
-    /* ===========================
-       TOOLTIP
-       =========================== */
+    
+    /* Tooltip */
     .tooltip-container {
       display: inline-block;
       position: relative;
@@ -147,10 +137,8 @@
       font-weight: bold;
       font-size: 12px;
     }
-
-    /* ===========================
-       RESULTADO
-       =========================== */
+    
+    /* Resultado */
     .result {
       margin-top: 10px;
       text-align: center;
@@ -160,22 +148,18 @@
       grid-column: 1 / -1;
       transition: opacity 0.3s;
     }
-
-    /* ===========================
-       RODAPÉ / SCI-GEN
-       =========================== */
+    
+    /* Rodapé / SciGen */
     .footer {
       margin-top: 30px;
       text-align: center;
       grid-column: 1 / -1;
     }
     .scigen-logo {
-      width: 120px;
-      margin-top: 5px;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
-      object-fit: cover; /* opcional */
+      margin: 0 auto;
+      width: 120px;
+      height: auto;
     }
     .footer-text {
       font-size: 0.8rem;
@@ -187,23 +171,21 @@
 <body>
 <div class="container">
   <div class="header">
-    <!-- Logo ENARE (sem Base64) -->
+    <!-- Logo ENARE (referenciado via arquivo externo) -->
     <img src="images/enare-logo.jpeg" alt="Logo ENARE" class="logo-enare">
     <h1>Calculadora de Pontuação ENARE</h1>
     <p class="subtitle">Selecione os itens de acordo com o edital</p>
   </div>
-
+  
   <form id="scoreForm">
-    <!-- 1) HISTÓRICO ESCOLAR -->
+    <!-- 1) Histórico Escolar -->
     <div class="form-group full-width">
       <label for="historico">
         Histórico Escolar
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            Se ≥ 50% menções A (50 pts), 
-            ou ≥ 50% menções A e B (40 pts),
-            ou ≥ 50% menções A, B ou C (30 pts).
+            Se ≥ 50% menções A (50 pts), ou A e B (40 pts), ou A, B ou C (30 pts).
           </span>
         </span>
       </label>
@@ -214,16 +196,15 @@
         <option value="50">≥ 50% A (50 pts)</option>
       </select>
     </div>
-
-    <!-- 2) PROGRAMA/PROJETO DE EXTENSÃO -->
+    
+    <!-- 2) Programas/Projetos de Extensão -->
     <div class="form-group">
       <label for="extensao">
         Programas/Projetos de Extensão (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            Cada projeto vale 4 pontos, 
-            máximo de 8 pontos.
+            Cada projeto vale 4 pts; máximo de 8 pts.
           </span>
         </span>
       </label>
@@ -233,16 +214,15 @@
         <option value="2">2</option>
       </select>
     </div>
-
-    <!-- 3) EVENTOS/ATIVIDADES NO SUS -->
+    
+    <!-- 3) Eventos/Atividades no SUS -->
     <div class="form-group">
       <label for="eventosSUS">
         Eventos/Atividades no SUS (0 a 4)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            0,25 ponto por evento, 
-            máximo de 1 ponto.
+            Cada evento vale 0,25 pt; máximo de 1 pt.
           </span>
         </span>
       </label>
@@ -254,16 +234,15 @@
         <option value="4">4</option>
       </select>
     </div>
-
-    <!-- 4) CURSOS DE APERFEIÇOAMENTO -->
+    
+    <!-- 4) Cursos de Aperfeiçoamento -->
     <div class="form-group">
       <label for="cursosAperf">
         Cursos de Aperfeiçoamento (0 a 4)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            Cada curso (≥180h) vale 0,5 ponto, 
-            máximo de 2 pontos.
+            Cada curso (mínimo 180h) vale 0,5 pt; máximo de 2 pts.
           </span>
         </span>
       </label>
@@ -275,16 +254,15 @@
         <option value="4">4</option>
       </select>
     </div>
-
-    <!-- 5) MONITORIA -->
+    
+    <!-- 5) Monitoria -->
     <div class="form-group">
       <label for="monitoria">
         Monitoria (semestres, 0 a 3)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            3 pontos por semestre,
-            máximo de 9 pontos.
+            3 pts por semestre; máximo de 9 pts.
           </span>
         </span>
       </label>
@@ -295,16 +273,15 @@
         <option value="3">3</option>
       </select>
     </div>
-
-    <!-- 6) ATIVIDADE DE PESQUISA -->
+    
+    <!-- 6) Atividade de Pesquisa -->
     <div class="form-group">
       <label for="pesquisa">
         Atividade de Pesquisa (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            6 pontos por atividade,
-            máximo de 12 pontos.
+            6 pts por atividade; máximo de 12 pts.
           </span>
         </span>
       </label>
@@ -314,16 +291,15 @@
         <option value="2">2</option>
       </select>
     </div>
-
-    <!-- 7) TRABALHOS CIENTÍFICOS APRESENTADOS -->
+    
+    <!-- 7) Trabalhos Científicos Apresentados -->
     <div class="form-group">
       <label for="trabalhos">
         Trabalhos Científicos (0 a 3)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            0,5 ponto por trabalho, 
-            máximo de 1,5 pontos.
+            0,5 pt por trabalho; máximo de 1,5 pts.
           </span>
         </span>
       </label>
@@ -334,16 +310,15 @@
         <option value="3">3</option>
       </select>
     </div>
-
-    <!-- 8) ARTIGOS NÃO INDEXADOS -->
+    
+    <!-- 8) Artigos não indexados -->
     <div class="form-group">
       <label for="artigosNaoIndex">
         Artigos não indexados (0 a 3)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            1 ponto por artigo, 
-            máximo de 3 pontos.
+            1 pt por artigo; máximo de 3 pts.
           </span>
         </span>
       </label>
@@ -354,16 +329,15 @@
         <option value="3">3</option>
       </select>
     </div>
-
-    <!-- 9) ARTIGOS INDEXADOS -->
+    
+    <!-- 9) Artigos indexados -->
     <div class="form-group">
       <label for="artigosIndex">
         Artigos indexados (0 a 3)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            1,5 ponto por artigo, 
-            máximo de 4,5 pontos.
+            1,5 pt por artigo; máximo de 4,5 pts.
           </span>
         </span>
       </label>
@@ -374,16 +348,15 @@
         <option value="3">3</option>
       </select>
     </div>
-
-    <!-- 10) PARTICIPAÇÃO EM CONGRESSO -->
+    
+    <!-- 10) Congressos/Simpósios -->
     <div class="form-group">
       <label for="congresso">
         Congressos/Simpósios (0 a 5)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            0,1 ponto por evento, 
-            máximo de 0,5 pontos.
+            0,1 pt por evento; máximo de 0,5 pt.
           </span>
         </span>
       </label>
@@ -396,16 +369,15 @@
         <option value="5">5</option>
       </select>
     </div>
-
-    <!-- 11) REPRESENTAÇÃO ESTUDANTIL -->
+    
+    <!-- 11) Representação Estudantil -->
     <div class="form-group">
       <label for="representacao">
         Representação Estudantil (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            1 ponto por ano, 
-            máximo de 2 pontos.
+            1 pt por ano; máximo de 2 pts.
           </span>
         </span>
       </label>
@@ -415,16 +387,15 @@
         <option value="2">2</option>
       </select>
     </div>
-
-    <!-- 12) LIGAS ACADÊMICAS -->
+    
+    <!-- 12) Ligas Acadêmicas -->
     <div class="form-group">
       <label for="ligas">
         Ligas Acadêmicas (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            0,5 ponto por participação (≥12 meses), 
-            máximo de 1 ponto.
+            0,5 pt por participação (mínimo 12 meses); máximo de 1 pt.
           </span>
         </span>
       </label>
@@ -434,8 +405,8 @@
         <option value="2">2</option>
       </select>
     </div>
-
-    <!-- 13) PROFICIÊNCIA EM LÍNGUA ESTRANGEIRA -->
+    
+    <!-- 13) Proficiência em Língua Estrangeira -->
     <div class="form-group full-width">
       <label>
         <input type="checkbox" id="proficiencia">
@@ -443,21 +414,20 @@
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            Marque se você possui proficiência comprovada em língua estrangeira.
+            Marque se você possui proficiência comprovada em uma língua estrangeira.
           </span>
         </span>
       </label>
     </div>
-
-    <!-- 14) PET SAÚDE/MEC -->
+    
+    <!-- 14) PET Saúde/MEC -->
     <div class="form-group">
       <label for="pet">
         PET Saúde/MEC (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            1 ponto por ano, 
-            máximo de 2 pontos.
+            1 pt por ano de participação; máximo de 2 pts.
           </span>
         </span>
       </label>
@@ -467,16 +437,16 @@
         <option value="2">2</option>
       </select>
     </div>
-
-    <!-- RESULTADO -->
+    
+    <!-- Resultado -->
     <div class="result" id="resultado">
       Pontuação total: 0
     </div>
   </form>
-
+  
   <div class="footer">
     <p class="footer-text">Desenvolvido por</p>
-    <!-- Logo SciGen (sem Base64) -->
+    <!-- Logo SciGen -->
     <img src="images/15c37e2b-4b80-4c89-8137-c7421eee9c35 2.jpeg" alt="Logo SciGen" class="scigen-logo">
   </div>
 </div>
@@ -495,94 +465,84 @@ document.addEventListener('DOMContentLoaded', () => {
 function calcular() {
   let total = 0;
 
-  // 1) Histórico
+  // 1) Histórico Escolar
   const historico = parseFloat(document.getElementById('historico').value) || 0;
   total += historico;
 
-  // 2) Extensão: 4 pts/projeto, máx. 8
+  // 2) Extensão
   const extensaoVal = parseInt(document.getElementById('extensao').value) || 0;
   let extensaoPts = extensaoVal * 4;
   if(extensaoPts > 8) extensaoPts = 8;
   total += extensaoPts;
 
-  // 3) Eventos SUS: 0,25 pt/evento, máx. 1
+  // 3) Eventos no SUS
   const eventosSUSVal = parseInt(document.getElementById('eventosSUS').value) || 0;
   let eventosSUSPts = eventosSUSVal * 0.25;
   if(eventosSUSPts > 1) eventosSUSPts = 1;
   total += eventosSUSPts;
 
-  // 4) Cursos de Aperfeiçoamento: 0,5 pt/curso, máx. 2
+  // 4) Cursos de Aperfeiçoamento
   const cursosVal = parseInt(document.getElementById('cursosAperf').value) || 0;
   let cursosPts = cursosVal * 0.5;
   if(cursosPts > 2) cursosPts = 2;
   total += cursosPts;
 
-  // 5) Monitoria: 3 pts/sem, máx. 9
+  // 5) Monitoria
   const monitoriaVal = parseInt(document.getElementById('monitoria').value) || 0;
   let monitoriaPts = monitoriaVal * 3;
   if(monitoriaPts > 9) monitoriaPts = 9;
   total += monitoriaPts;
 
-  // 6) Pesquisa: 6 pts/cada, máx. 12
+  // 6) Pesquisa
   const pesquisaVal = parseInt(document.getElementById('pesquisa').value) || 0;
   let pesquisaPts = pesquisaVal * 6;
   if(pesquisaPts > 12) pesquisaPts = 12;
   total += pesquisaPts;
 
-  // 7) Trabalhos Apresentados: 0,5 pt/cada, máx. 1,5
+  // 7) Trabalhos Científicos
   const trabVal = parseInt(document.getElementById('trabalhos').value) || 0;
   let trabPts = trabVal * 0.5;
   if(trabPts > 1.5) trabPts = 1.5;
   total += trabPts;
 
-  // 8) Artigos não indexados: 1 pt/cada, máx. 3
+  // 8) Artigos não indexados
   const artNaoVal = parseInt(document.getElementById('artigosNaoIndex').value) || 0;
   let artNaoPts = artNaoVal * 1;
   if(artNaoPts > 3) artNaoPts = 3;
   total += artNaoPts;
 
-  // 9) Artigos indexados: 1,5 pt/cada, máx. 4,5
+  // 9) Artigos indexados
   const artIndexVal = parseInt(document.getElementById('artigosIndex').value) || 0;
   let artIndexPts = artIndexVal * 1.5;
   if(artIndexPts > 4.5) artIndexPts = 4.5;
   total += artIndexPts;
 
-  // 10) Congressos: 0,1 pt/evento, máx. 0,5
+  // 10) Congressos/Simpósios
   const congressoVal = parseInt(document.getElementById('congresso').value) || 0;
   let congressoPts = congressoVal * 0.1;
   if(congressoPts > 0.5) congressoPts = 0.5;
   total += congressoPts;
 
-  // 11) Representação Estudantil: 1 pt/ano, máx. 2
+  // 11) Representação Estudantil
   const repVal = parseInt(document.getElementById('representacao').value) || 0;
-  if(repVal > 2) {
-    total += 2;
-  } else {
-    total += repVal;
-  }
+  total += (repVal > 2) ? 2 : repVal;
 
-  // 12) Ligas Acadêmicas: 0,5 pt/cada, máx. 1
+  // 12) Ligas Acadêmicas
   const ligasVal = parseInt(document.getElementById('ligas').value) || 0;
   let ligasPts = ligasVal * 0.5;
   if(ligasPts > 1) ligasPts = 1;
   total += ligasPts;
 
-  // 13) Proficiência (checkbox): 1 pt
+  // 13) Proficiência em Língua Estrangeira (checkbox)
   if(document.getElementById('proficiencia').checked) {
     total += 1;
   }
 
-  // 14) PET Saúde/MEC: 1 pt/ano, máx. 2
+  // 14) PET Saúde/MEC
   const petVal = parseInt(document.getElementById('pet').value) || 0;
-  if(petVal > 2) {
-    total += 2;
-  } else {
-    total += petVal;
-  }
+  total += (petVal > 2) ? 2 : petVal;
 
-  // Arredonda para 1 casa decimal
   total = Math.round(total * 10) / 10;
-
   let diff = 100 - total;
   let msg = `Pontuação total: ${total} / 100<br>`;
   if (diff > 0) {
@@ -592,11 +552,9 @@ function calcular() {
   } else {
     msg += `Pontuação perfeita!`;
   }
-
   document.getElementById('resultado').innerHTML = msg;
 }
 
-/* Animação de fade-out / fade-in */
 function fadeOutIn(callback) {
   const resultDiv = document.getElementById('resultado');
   resultDiv.style.opacity = '0';
@@ -608,3 +566,4 @@ function fadeOutIn(callback) {
 </script>
 </body>
 </html>
+
