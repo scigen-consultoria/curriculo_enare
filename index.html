@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calculadora de Pontuação ENARE</title>
 
   <!-- Fonte Roboto (Google Fonts) -->
@@ -56,16 +56,10 @@
     .logo-enare {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, #66bb6a, #43a047);
       border-radius: 50%;
       margin: 0 auto 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 1px;
+      display: block;
+      object-fit: cover; /* opcional, caso a imagem não seja circular */
     }
     h1 {
       margin: 0;
@@ -181,6 +175,7 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+      object-fit: cover; /* opcional */
     }
     .footer-text {
       font-size: 0.8rem;
@@ -192,10 +187,10 @@
 <body>
 <div class="container">
   <div class="header">
-    <!-- Logo ENARE -->
-    <div class="logo-enare">ENARE</div>
-    <h1>Calculadora de Pontuação (Novo Edital)</h1>
-    <p class="subtitle">Selecione os itens de acordo com as páginas enviadas</p>
+    <!-- Logo ENARE (sem Base64) -->
+    <img src="images/logo-enare.png" alt="Logo ENARE" class="logo-enare">
+    <h1>Calculadora de Pontuação ENARE</h1>
+    <p class="subtitle">Selecione os itens de acordo com o edital</p>
   </div>
 
   <form id="scoreForm">
@@ -223,7 +218,7 @@
     <!-- 2) PROGRAMA/PROJETO DE EXTENSÃO -->
     <div class="form-group">
       <label for="extensao">
-        Programa/Projeto de Extensão (0 a 2)
+        Programas/Projetos de Extensão (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
@@ -239,7 +234,49 @@
       </select>
     </div>
 
-    <!-- 3) MONITORIA -->
+    <!-- 3) EVENTOS/ATIVIDADES NO SUS -->
+    <div class="form-group">
+      <label for="eventosSUS">
+        Eventos/Atividades no SUS (0 a 4)
+        <span class="tooltip-container">
+          <span class="tooltip-icon">?</span>
+          <span class="tooltip-text">
+            0,25 ponto por evento, 
+            máximo de 1 ponto.
+          </span>
+        </span>
+      </label>
+      <select id="eventosSUS">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+
+    <!-- 4) CURSOS DE APERFEIÇOAMENTO -->
+    <div class="form-group">
+      <label for="cursosAperf">
+        Cursos de Aperfeiçoamento (0 a 4)
+        <span class="tooltip-container">
+          <span class="tooltip-icon">?</span>
+          <span class="tooltip-text">
+            Cada curso (≥180h) vale 0,5 ponto, 
+            máximo de 2 pontos.
+          </span>
+        </span>
+      </label>
+      <select id="cursosAperf">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+
+    <!-- 5) MONITORIA -->
     <div class="form-group">
       <label for="monitoria">
         Monitoria (semestres, 0 a 3)
@@ -259,7 +296,7 @@
       </select>
     </div>
 
-    <!-- 4) ATIVIDADE DE PESQUISA -->
+    <!-- 6) ATIVIDADE DE PESQUISA -->
     <div class="form-group">
       <label for="pesquisa">
         Atividade de Pesquisa (0 a 2)
@@ -278,14 +315,14 @@
       </select>
     </div>
 
-    <!-- 5) TRABALHOS CIENTÍFICOS APRESENTADOS -->
+    <!-- 7) TRABALHOS CIENTÍFICOS APRESENTADOS -->
     <div class="form-group">
       <label for="trabalhos">
         Trabalhos Científicos (0 a 3)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            0,5 ponto por trabalho,
+            0,5 ponto por trabalho, 
             máximo de 1,5 pontos.
           </span>
         </span>
@@ -298,14 +335,14 @@
       </select>
     </div>
 
-    <!-- 6) ARTIGOS NÃO INDEXADOS -->
+    <!-- 8) ARTIGOS NÃO INDEXADOS -->
     <div class="form-group">
       <label for="artigosNaoIndex">
         Artigos não indexados (0 a 3)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            1 ponto por artigo,
+            1 ponto por artigo, 
             máximo de 3 pontos.
           </span>
         </span>
@@ -318,14 +355,14 @@
       </select>
     </div>
 
-    <!-- 7) ARTIGOS INDEXADOS -->
+    <!-- 9) ARTIGOS INDEXADOS -->
     <div class="form-group">
       <label for="artigosIndex">
         Artigos indexados (0 a 3)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            1,5 ponto por artigo,
+            1,5 ponto por artigo, 
             máximo de 4,5 pontos.
           </span>
         </span>
@@ -338,14 +375,14 @@
       </select>
     </div>
 
-    <!-- 8) PARTICIPAÇÃO EM CONGRESSO -->
+    <!-- 10) PARTICIPAÇÃO EM CONGRESSO -->
     <div class="form-group">
       <label for="congresso">
         Congressos/Simpósios (0 a 5)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            0,1 ponto por evento,
+            0,1 ponto por evento, 
             máximo de 0,5 pontos.
           </span>
         </span>
@@ -360,14 +397,14 @@
       </select>
     </div>
 
-    <!-- 9) REPRESENTAÇÃO ESTUDANTIL -->
+    <!-- 11) REPRESENTAÇÃO ESTUDANTIL -->
     <div class="form-group">
       <label for="representacao">
         Representação Estudantil (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            1 ponto por ano,
+            1 ponto por ano, 
             máximo de 2 pontos.
           </span>
         </span>
@@ -379,19 +416,52 @@
       </select>
     </div>
 
-    <!-- 10) LIGAS ACADÊMICAS -->
+    <!-- 12) LIGAS ACADÊMICAS -->
     <div class="form-group">
       <label for="ligas">
         Ligas Acadêmicas (0 a 2)
         <span class="tooltip-container">
           <span class="tooltip-icon">?</span>
           <span class="tooltip-text">
-            0,5 ponto por participação (≥12 meses),
+            0,5 ponto por participação (≥12 meses), 
             máximo de 1 ponto.
           </span>
         </span>
       </label>
       <select id="ligas">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+    </div>
+
+    <!-- 13) PROFICIÊNCIA EM LÍNGUA ESTRANGEIRA -->
+    <div class="form-group full-width">
+      <label>
+        <input type="checkbox" id="proficiencia">
+        Proficiência em Língua Estrangeira (1 pt)
+        <span class="tooltip-container">
+          <span class="tooltip-icon">?</span>
+          <span class="tooltip-text">
+            Marque se você possui proficiência comprovada em língua estrangeira.
+          </span>
+        </span>
+      </label>
+    </div>
+
+    <!-- 14) PET SAÚDE/MEC -->
+    <div class="form-group">
+      <label for="pet">
+        PET Saúde/MEC (0 a 2)
+        <span class="tooltip-container">
+          <span class="tooltip-icon">?</span>
+          <span class="tooltip-text">
+            1 ponto por ano, 
+            máximo de 2 pontos.
+          </span>
+        </span>
+      </label>
+      <select id="pet">
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -404,22 +474,16 @@
     </div>
   </form>
 
-  <!-- RODAPÉ / SCI-GEN (pode substituir se quiser) -->
   <div class="footer">
     <p class="footer-text">Desenvolvido por</p>
-    <!-- Ajuste o caminho da imagem, se necessário -->
-    <img 
-      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCANlBQADASIAAhEBAxEB/8QAGgABAQADAQEAAAAAAAAAAAAAAAEDBAUGAv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAC0RdAAAUAAAAAAAAFAAAAAAAABQAAAAAAAUAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAFAAAAAAAAsoAAAAAABrAAAAoAAAAAAAAKAAAAAAAACgAAAAAAAoAAAAAAAKAAAAAAAACgAAAAAAAAoAAAAAAAKAAAAAAABZQAAAAAADWAAABQAAAAAAAAUAAAAAAAAFAAAAAAABQAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAALKAAAAAAAAUAAAAAAGsAAACgAAAAAAAAoAAAAAAAAKAAAAAAACgAAAAAAAoAAAAAAAAKlAAAAAAAAKlAAAAAAAFlAAAAAAAAKlAAAAAANYAAAFAAAAAAAABQAAAAAAAAUAAAAAAAFAAAAAAABQAAAAAAAALKAAAAAAAALKAAAAAAALBQAAAAAAAAUAAAAAGsAAABZQAAAAAAACgAAAAAAAAWUAAAAAAAqUAAAAAAAWUAAAAAAAAWUAAAAAAAAWCgAAAAAAAoAAAAAAAAFgoAAAANYAAACygAAAAAAAFSgAAAAAAACygAAAAAACygAAAAAACygAAAAAAACwUAAAAAAAAFAAAAAAAAsoAAAAAAAAAsFAAABrAAAAWUAAAAAAAAWUAAAAAAAAWUAAAAAAAWUAAAAAAGYw5Op0JORqejh5h2+YuuKAAAAAAoAAAAAAAAKlAAAAAAAAKAAAAAAAAAACoKADWAAAAsoAAAAAAAAsoAAAAAAAAsoAAAAAAAsFAAAAXeNDa62aTW2+foHZ5/Ohm2tBb39ny+eTr83Z3jzj0XOOc+vm0AAACpQAAAAAAABZQAAAAAAABZQAAAAAAAAAAACoNcAAACwUAAAAAAACygAAAAAAAAFAAAAAAABQAGXpHL3+hoydDDxsRv6XytAAqUAWDc3+Ij0nP52+mjj9BgOMz4LQAFlAAAAAAAAAKAAAAAAAACpQAAAAAAAAAAADXAAAABQAAAAAAALBQAAAAAAAAUAAAAAAAobmwanQ1dKTr6GqUKAAAAWUAAAAbGuOtk4v1Jtam5sHKb+lb82CgAAAAAAAAWUAAAAAAAAWCgAAAAAAAAAAA1wAAAAUAAAAAAAAFAAAAAAAABUoAAAAPs+PrNTJk58M+GUAAAAAAAWCgAAAAAAy7WgN3V+c8YGxir4AAAAAAAABQAAAAAAAALBQAAAAAAAAAAa4AAAAKAAAAAAAACgAAAAAAAAWUAAAA+nyAAFlAAAAAAAAKAAAAAAAAB9fNPr5AAAAAAAABZQAAAAAAAABYKAAAAAAAAADXCggAACygAAAAAAACygAAAAAAACwUAAAAAAAFAAAAAAAAsoAAAAAAAABQAAAAAAAAAVKAAAAAAAAAAVKAAAAAAAAa4UEAAAWUAAAAAAAAWUAAAAAAAAAoAAAAAAAKlAAF+u5HAdblVAAALBQL0N+Tz7PgtAAAAAAWUAAAAAAAAAWCgAAAAAAAAAAWCgAAAAAA1woIAAAsFAAAAAAAAsFAAAAAAAABUoAAAAAAAsoABm7/n+3Js6m2Ty87fyvGehynmp6n5PMPRa5xuw6A+frEnF1s+C6AAAAAAAoAAAAAAAAAFgoAAAAAAAAAAAKgqUAAAA1woIAAABQAAAAAAAAUAAAAAAAACygAAAAAAAFAA2tXMejEyAAAAA43Z4S6gtAAAAAAAWUAAAAAAAAAAWCgAAAAAAAAAAAAWCoKgoNcAAAAAFAAAAAAAABUoAAAAAAAAsFAAAAAAABUoA6fP8ASyXBrcY9P9ea7KbjHkAD51jawcbXX1Ohg6yeXbGvdAAAAAAAAVKAAAAAAAAAAVKAAAAAAAAAAAAAAAAYAAoICggCygAAAAAAACygAAAAAAAAFAAAAAAAAsoBu9zi9qZ4Wn1OXdbPW4CMvpPL+nShOD0OTia3tErN6PiduTlczqctQoAAAAAABYKAAAAAAAAAABZQAAAAAAAAAAAAAADAAFBAAAFgoAAAAAAAAKAAAAAAAABZQAAAAAAACg6/S09yZ+eL3B5Z6UvM6n3x0x9fze4u5yPUfB5nZ7eUx5BNPh+i86oWgAAAAAAALKAAAAAAAAAAALBQAAAAAAAAAAAAAYAAoIAAABQAAAAAAAAVKAAAAAAAAAUAAAAAAACynY6OptzIADW2R5btc7vL9BAANThei86oWgAAAAAAAAVKAAAAAAAAAAALBUoAAAAAAAAAAABgAAAAAABUoAAAAAAAAsoAAAAAAAABUoAAAAAAA+/joHaEyAABrbIAAAPP+g5ZyxdAAAAAAAAAAUAAAAAAAAAAAAFQUAAAAAAAAAAGAKCAoIAAAsoAAAAAAAABQAAAAAAAALBQAAAAAAPQef8AQybIQAAAAAABiy4jzhLqgAAAAAAAAAWCgAAAAAAAAAAAAAqCgAAAAAAAAwBQQFBAAAAKAAAAAAAACpQAAAAAAAACgAAAAAAdTl5T0omQAAAAAAHP6HBNQXVSgAAAAAAAAACwUAAAAAAAAAAAAAACwVKAAAAAAYAoIAAAAABUoAAAAAAAAsoAAAAAAAAAsoAAAAAAB3tzgd+ZAAAAAAAw+d6HOULQKAAAAAAAAAABYKAAAAAAAAAAAAAAAABYKgoAAMAUAEBQQAABZQAAAAAAAACgAAAAAAAAAoAAAAAAHofPbMehSsmOn2AAQrDmGPJxDT+S6AAWCgAAAAAAAAAAWCgAAAAAAAAAAAAAAAAAAAAwpVABAUEAAAAoAAAAAAAAFlAAAAAAAAAFlAAAAAAAO3t8PuzPCzdDCuznlQD55HZ0Tm9b42lxee3tEC0AABZQAAAAAAAAAAACpQAAAAAAAAAAAAAAAAAADBZVABAAAAAAFlAAAAAAAAAKAAAAAAAAACgAAAAAAffwPT/fN6UyAABPPdXhqFoAAAAFSgAAAAAAAAAAAFQUAAAAAAAAAAAAAAAAAGALQAAgKCAAALBQAAAAAAAAVKAAAAAAAAALBQAAAAAAZfR+X7EnSCADTOXrF0AAAAAABUoAAAAAAAAAAAAsFSgAAAAAAAAAAAAAAAGALUoACAoIAAABUoAAAAAAAAsFAAAAAAAAABUoAAAAAA+/gekzeX6cnVfHPToef+PhQtAAAAAAAAqUAAAAAAAAAAAAAqCgAAAAAAAAAAAAAAwBVgoAQAAAFBAFlAAAAAAAAAKlAAAAAAAAAFgoAAAAAAALAqUAAAAAAAAAWCpQAAAAAAAAAAAAACoKAAAAAAAAAAAADAFAoAAQFBAAAAKAAAAAAAABYKAAAAAAAAABZQAAAbJrO9qycsWgAAVKAAAAAAAAALBUoAAAAAAAAAAAAAABUFSgAAAAAAAAAGAKAsoACAAAAAALKAAAAAAAAAVKAAAAAD7Pi9jfk85fSjzHx6r4PLtvUtoAAHb4m9HcY9Vni/JdDbNT67m1J516QeY+fUaRxBaAAAAAAAAABUoAAAAAAAAAAAAAAAAsFQVKAAAAAAAYAoAFAACAoIAAABQAAAAAAAAAUAAAADu8L1Mn0cpOq82X0jzuUaObDaux244mbuE4OH0g8rlnRt1Z6DFJ5oz27fYlmTW5Z3XnS+i1eZ9nPsW27vXk4n33B57X9TgPOs+C0dM5+z2/qTh6/pB5Z2+LbAAALBQAAAAAAAAAAAAAAAAAALBUFQVKAAYAoAFSgAICggAAACygAAAAAAAACygAAAD03mejJ2tfPU4mr6UvlHo+Yc/Jj6dvUyJM3HxNRfT/AH5XMfPR5fUXq4suJnzXV5Xba3/j71GeFfjZusjupOE7o8zl+ugb1fKX54muvpmjvJqcH0fnF3u3q7SPjDwT0WXy3XXpc7o/KeYWXQAACwUAAAAAAAAAAAAAAAAAAAAAAAGEKAAsFAACAoIAAABQAAAAAAAAAVKAAAAbPS4g9Lm8pnk9I19hOFt/WJerr7Hwnl3183VSjq8rqx1cWXEz5rtcXpNdjW2Yz5bYmC69NfMZpPSBOB1+R1F2zGmRpZDZaOgZ+YXXpcnx9zPK5fT5jTa1dmvQCZ83iy4roAAAACpQAAAAAAAAAAAAAAAAAAAAADCFAAAqUABAUEAAAAWUAAAAAAAAAWCgAAd/gerk53z0ycv66Qx5GI0NHHia9VeV1WdfT6g5mxtjzHS53RXq4suJPNffwuvS5fPd2Z+tLfHMyb4A4GbDqtepaW6zq6/SHOybo8/rbepdem+/j7meTzOnzGmzrbNegEz5vFlxXQAAAAACwUAAAAAAAAAAAAAAAAAAAAGEKAAAsFAACAoIAAABQAAAAAAAAALKAAOvyB3fvz6T0Hxwh0+f8LQG3qDt5vPJPQYOMPrd0Fvd+OMkC19fI6W3wkeg+eCTsamkX6+Sm9ojt5fPpO9h44y44t7X1xEm5plrNhHccNJ9/BaAAAAAAABUFAAAAAAAAAAAAAAAAAABhCgAAAVKAAgKCAAAALBQAAAAAAAAAVKAAALNgswQyXHnF1vom1j+zVy5YYsnxkJ8fcJi2NcZMewfGLPgFgz5NTOfMx7JLrUbPzlMVmSNf4zYam1Ya83tEAAAAAAAAAAAAAqCgAAAAAAAAAAAAAAAAwhQAAAFgoAAQFBAAAAKlAAAAAAAAAFgoAAANlrD7+sQ2WsL94w2tUfWxqjZx4hly6o2teDa+dcbGuDJjD7+BstYX7xhnwDJ8/IyYwuTEKlCwAAAAAAAAAAAAAqCpQAAAAAAAAAAAAADCFAAAAAqUABAAAAAAAKAAAAAAAAABZQD6kyGNsYT5AAAAAAABUoAAAAAAAAAZM5g+piPqSgAAAAAAAAAAAAAACwVBQAAAAAAAAAAAYQoAAAACwUAAICggAAACygAAAAAAAAAFSgDZ1hu6vxumk6egYwAAAAAAVKAAAAAAH10Tn7rQja1CgAFgoAAAAAAAAAAAAAAAAFgqCgAAAAAAAAwhQAAAAAFlAAQAFBAAAAKlAAAAAAAAAAKlAAPro8wdXnzqScd2eXbiAAAAABUFAAAXoGh0drmSbvNxLQAAAAAKlAAAAAAAAAAAAAAAAAAAFgqCoKgoAAMIUAAAAAACgABAUEAAAAWCgAAAAAAAAAWCgAAAzdfhI7fL++unnnd5VuuAAAABYKb5odDp6cm3zdL4AtAAAAAAAAWCgAAAAAAAAAAAAAAAAAAAAAAAAxBQAAAAAAFgoAQAFBAAAAKlAAAAAAAAAAFgoAAAAN/q+bsnd5e11Dy7v8ALXUFADcNTe6f3J84+dpGfAWgAAAAAAAAAAAVBQAAAAAAAAAAAAAAAAAAAAAAYgoAAAAAAAFSgAIACggAAAFSgAAAAAAAAACwUAAAAD7+B2Ol5XNJ2+Vv9A8pt9vKauxpcg6HM+VoCwUAAAAAAAAAAAAAFQUAAAAAAAAAAAAAAAAAAAAGJKoAAAAAAAAFAACAoIAAAABQAAAAAAAAAALBQAAAAANrVHa0dNAUAAABUoAAAAAAAAAAAAABUFAAAAAAAAAAAAAAAAAABhsLQAAAAAAAALBQAgAKCAAAALBQAAAAAAAAAALBQAAAAAAAAAAAAVBQAAAAAAAAAAAAAAVBUoAAAAAAAAAAAAAAABhC1KAAAAAAAAAVKAAgAKCAAAALBQAAAAAAAAAALBQAAAAAAAAAAAALBQAAAAAAAAAAAAAAAAVBUoAAAAAAAAAAAABhCgUAAAAAAAAAFAACAoIAAAABUoAAAAAAAAAAAsFAAAAAAAAAAAAABUoAAAAAAAAAAAAAAAAABUFQUAAAAAAAAAGEKAsoAAAAAAAAAsFAACAoIAAAABUoAAAAAAAAAAAsFAAAAAAAAAAAAAAsFSgAAAAAAAAAAAAAAAAAAACwVBUFQUAAAGEKABUoAAAAAAAAAsoACAAoIAAAABUoAAAAAAAAAAAsFAAAAAAAAAAAAAABUFAAAAAAAAAAAAAAAAAAAAAAAAAABiCgALBQAAAAAAAAAVKAAgAKCAAAAAVKAAAAAAAAAAALBUoAAAAAAAAAAAAAABUFAAAAAAAAAAAAAAAAAAAAAAAABiCgAALBQAAAAAAAAAVKAAgAKCAAAAAVKAAAAAAAAAAAAVKAAAAAAAAAAAAAAAAVBQAAAAAAAAAAAAAAAAAAAAAAYgoAAAFAAAAAAAAAAoAAAgKCAAAAAAUAAAAAAAAAAAAFAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAf//aAAwDAQACAAMAAAAQBV99BB99BBV99BB19pBB99BB99BB99BA98BB89AB09oBA88AA88oAU88AA88AA88BA98pAV9pBV9pBB9BR99BB99BBV99BB19pBB99BB99BB99BA98BB89ABU9oBA88AAU8oAU88AA88AA98BA99pBV9pBR99BBRBB99BB99BBV99BBV9pBB99BB99BB99BA98BB89ABU9oAA88AAU8oAA88AAU8oAV8pAV9tBA98BB99pBBBB99BB99BBV99BBV9tBB99BB99BB99BA98BB89ABU8oAA88IAU8oAA88IAU8oAV8pBV98BA19JBR99NBBB99BBV9JBV99BBV99BB99BB99BB99BA98BB89ABU8oAA88oAU8sAA88oAU8sAQ8sBA98pBR98BBR999BB99pBV9pBV99BBV99BBV9pBV9pBV9JA19IBU9oBU88AAU8oAA88AAU8sAA88AA98BA198BA19sBBR19BB99pBV9pBB99JBV99BBV9pBV9pBV9pAV9oBU9oAA88AAU8sAA88IAU88AA08IAV8pBQ98pBA99tBBBRBB99pBV9pBB99pBR99BBV9pBV9pBV9pBV9oBU864G89IBQ88AA08oAQ88IAU8sAQ88BA198JBQ998NBBpBV9pBV9pBB99pBB99pBV9pBV9pBR9tBQ9sA10XxR8zoAA88IAU8sAA08oAA88AA18pBA998JBA1998NpBV9tBR9tBB99pBB99pBB99BB99BB99BB99JA1ClBU9sADd9oAA08oAA88oAA08sAAQ88IAA188tBBAAxx98pBV9tBB99BBV99BB19tBB99JB19pBV9pAVNhHO57A898sAAQ88AAQ88AAQ88sAAU88IAAR888NJBAAA8pBV99BB99BBV99BBV99BBV9pBV9tBR99BA8888888qA88IBA88oAA08sAAQ88sAAw88sAAA1888sNNB9tBB99BB19pBR99JBR99JBR9tBB99BB99JA6UH08g9yIU8sAAQ88IAQ88IAA088IAAQ88sIAAAx9888898BA99pBV9pBB99pBB99pBB99BB19pBV9pB3Vep8eccKA89IAA08sAA088IAA088oAAQ088sAAAAQxx938JBV9tBR99BBV99BBV99BBV9pBV9tBB99BWGsvHEx8KBU8sABQ88oAA088IAA088sAAAw888sIAAAAAX8pBV99BB99JBR99JBR99JBR99BB99BB19p+88hQ888qAA89oAAQ88IAA08sIAA088sIAAQ08888sMMAT99BB99JBV9pBB99pBB99pBB99JBV9pBR94c888s888PABQ88IBA088AAA088IAAw888MAAAAw088888C/8AAQdfaQUfbQQdffQQVffQQVfbQUffQQde/PPPPPPPPLAAdPLAAANPLAAANPPCAAEPPPPDAAAAAMMMPAl/KQVffQQffSQUffSQUffSQQffQQdfaQUfdPPPPPPPO/SAQPPbAAAPPLAAANPPCAAAMPPPPLCAAAAAAAF/bQUffSQVfaQQffaQQdfbQQVfaQUffQQde/PPPPPPF/fAAUPPCAAEPPLAAANPPLAAAAMPPPPPLDAAAAAvfAQdfaQUffQQVffQQVffSQUffQQdfaQUbvNPPPFFgdPbAAUPPCAAEPPLAAAMPPPDAAAAMNPPPPPPPCgt/KQVffQQffSQQffaQQffbQQdfaQUffQQdY6dPF0owUPPaAAdPPCAAEPPPCAAENPPLCAAAAAMMPPPPKgE/bQQffaQVfbQQdffQQVffSQUffQQdfbQQfE/PPPPCQUPPSAAdPPCAAENPPDAAAENPPPDAAAAAAAAMPgAv/AQdfbQQffQQUffSQQffbQQdfbQUffSQVavPIVPbAQdPfSAQNPPCAAANPPLCAAAMPPPPLDCAAAAAPigl/KQUffSQdfaQQdfbQQVffSQQffSQVfbQQdAH6wNfbAQdPfSAQNPPDAAQEPPPDAAAAENPPPPPPDDDPrgE/fQQPfaQUffQQUffSQQffbQQVfbQQdfaQUffSQUPfaAQdPbSAQNPPLAAAANPPPDAAAAAMMPPPPPPPPggt/KQVffQQdfaQQdfbQQVffSQQffaQUfeDwUffSQEPfTAQdPbSAAUPPbCAAQENPPPDCAAAAAAEMMMNvqgF/bQQffaQUffQQUffSQQffbRX/bdAQVblQRNnZgQEPfCAQdPfSAAUPPPDAAAAENPPPLDCAAAAAAAEvPgAv/AAkFX30EHX2kEHX30EFH33KPXBWYyzXyhKLji1exnTkxg3T32wAEDTz2wgAAABDDzzzzywwwgAALb4oBfy0EH32kFH30EFH32kEHX2u3g+liVEbyo3QzwNzE1aouQ8nT32wAEFDzzywgAAEABDTzzzzzzzwJb64AL/wkFX30EHX20EHX30kEH30yXSGjUlby6ACHxXx/uFRa3ygFDz30gAEDDzzywgAAEEAADDDTzzwAL74oBfy0EH32kEH30kEH320EFEIKJxKPYrfwT5nLzJ3ZIlRr3yQEFDT32wAAEDDzz3wwgAAEEAAAAAAAJb64AL3wkFX30EFX20EFX32kEGU/9k"
-      alt="SciGen Consultoria"
-      class="scigen-logo"
-    >
+    <!-- Logo SciGen (sem Base64) -->
+    <img src="images/logo-scigen.png" alt="Logo SciGen" class="scigen-logo">
   </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Sempre que algum campo mudar, recalcula a pontuação
-  const elements = document.querySelectorAll('select');
+  const elements = document.querySelectorAll('select, #proficiencia');
   elements.forEach(el => {
     el.addEventListener('change', () => {
       fadeOutIn(calcular);
@@ -428,7 +492,6 @@ document.addEventListener('DOMContentLoaded', () => {
   calcular();
 });
 
-/* Função principal de cálculo */
 function calcular() {
   let total = 0;
 
@@ -436,61 +499,86 @@ function calcular() {
   const historico = parseFloat(document.getElementById('historico').value) || 0;
   total += historico;
 
-  // 2) Extensão: 4 pts/cada, máx. 8
+  // 2) Extensão: 4 pts/projeto, máx. 8
   const extensaoVal = parseInt(document.getElementById('extensao').value) || 0;
   let extensaoPts = extensaoVal * 4;
-  if (extensaoPts > 8) extensaoPts = 8;
+  if(extensaoPts > 8) extensaoPts = 8;
   total += extensaoPts;
 
-  // 3) Monitoria: 3 pts/sem, máx. 9
+  // 3) Eventos SUS: 0,25 pt/evento, máx. 1
+  const eventosSUSVal = parseInt(document.getElementById('eventosSUS').value) || 0;
+  let eventosSUSPts = eventosSUSVal * 0.25;
+  if(eventosSUSPts > 1) eventosSUSPts = 1;
+  total += eventosSUSPts;
+
+  // 4) Cursos de Aperfeiçoamento: 0,5 pt/curso, máx. 2
+  const cursosVal = parseInt(document.getElementById('cursosAperf').value) || 0;
+  let cursosPts = cursosVal * 0.5;
+  if(cursosPts > 2) cursosPts = 2;
+  total += cursosPts;
+
+  // 5) Monitoria: 3 pts/sem, máx. 9
   const monitoriaVal = parseInt(document.getElementById('monitoria').value) || 0;
   let monitoriaPts = monitoriaVal * 3;
-  if (monitoriaPts > 9) monitoriaPts = 9;
+  if(monitoriaPts > 9) monitoriaPts = 9;
   total += monitoriaPts;
 
-  // 4) Pesquisa: 6 pts/cada, máx. 12
+  // 6) Pesquisa: 6 pts/cada, máx. 12
   const pesquisaVal = parseInt(document.getElementById('pesquisa').value) || 0;
   let pesquisaPts = pesquisaVal * 6;
-  if (pesquisaPts > 12) pesquisaPts = 12;
+  if(pesquisaPts > 12) pesquisaPts = 12;
   total += pesquisaPts;
 
-  // 5) Trabalhos: 0,5/cada, máx. 1,5
+  // 7) Trabalhos Apresentados: 0,5 pt/cada, máx. 1,5
   const trabVal = parseInt(document.getElementById('trabalhos').value) || 0;
   let trabPts = trabVal * 0.5;
-  if (trabPts > 1.5) trabPts = 1.5;
+  if(trabPts > 1.5) trabPts = 1.5;
   total += trabPts;
 
-  // 6) Artigos não indexados: 1/cada, máx. 3
+  // 8) Artigos não indexados: 1 pt/cada, máx. 3
   const artNaoVal = parseInt(document.getElementById('artigosNaoIndex').value) || 0;
   let artNaoPts = artNaoVal * 1;
-  if (artNaoPts > 3) artNaoPts = 3;
+  if(artNaoPts > 3) artNaoPts = 3;
   total += artNaoPts;
 
-  // 7) Artigos indexados: 1,5/cada, máx. 4,5
+  // 9) Artigos indexados: 1,5 pt/cada, máx. 4,5
   const artIndexVal = parseInt(document.getElementById('artigosIndex').value) || 0;
   let artIndexPts = artIndexVal * 1.5;
-  if (artIndexPts > 4.5) artIndexPts = 4.5;
+  if(artIndexPts > 4.5) artIndexPts = 4.5;
   total += artIndexPts;
 
-  // 8) Participação em Congresso: 0,1/cada, máx. 0,5
+  // 10) Congressos: 0,1 pt/evento, máx. 0,5
   const congressoVal = parseInt(document.getElementById('congresso').value) || 0;
   let congressoPts = congressoVal * 0.1;
-  if (congressoPts > 0.5) congressoPts = 0.5;
+  if(congressoPts > 0.5) congressoPts = 0.5;
   total += congressoPts;
 
-  // 9) Representação Estudantil: 1/ano, máx. 2
+  // 11) Representação Estudantil: 1 pt/ano, máx. 2
   const repVal = parseInt(document.getElementById('representacao').value) || 0;
-  if (repVal > 2) {
+  if(repVal > 2) {
     total += 2;
   } else {
     total += repVal;
   }
 
-  // 10) Ligas Acadêmicas: 0,5/cada, máx. 1
+  // 12) Ligas Acadêmicas: 0,5 pt/cada, máx. 1
   const ligasVal = parseInt(document.getElementById('ligas').value) || 0;
   let ligasPts = ligasVal * 0.5;
-  if (ligasPts > 1) ligasPts = 1;
+  if(ligasPts > 1) ligasPts = 1;
   total += ligasPts;
+
+  // 13) Proficiência (checkbox): 1 pt
+  if(document.getElementById('proficiencia').checked) {
+    total += 1;
+  }
+
+  // 14) PET Saúde/MEC: 1 pt/ano, máx. 2
+  const petVal = parseInt(document.getElementById('pet').value) || 0;
+  if(petVal > 2) {
+    total += 2;
+  } else {
+    total += petVal;
+  }
 
   // Arredonda para 1 casa decimal
   total = Math.round(total * 10) / 10;
@@ -505,8 +593,7 @@ function calcular() {
     msg += `Pontuação perfeita!`;
   }
 
-  const resultadoDiv = document.getElementById('resultado');
-  resultadoDiv.innerHTML = msg;
+  document.getElementById('resultado').innerHTML = msg;
 }
 
 /* Animação de fade-out / fade-in */
